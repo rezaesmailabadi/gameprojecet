@@ -27,7 +27,6 @@ class CategoryController extends Controller
                $cat->save();
                $arr = array('status' => 'true', 'message' => 'Success', 'reload' => url('admin/exam_category'));
            }
-           echo json_encode($arr);
        }
    
    
