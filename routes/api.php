@@ -28,9 +28,17 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
-Route::middleware('auth:sanctum')->group(function(){
-    Route::get('/user',[AuthController::class,'user']);
+
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/user', [AuthController::class, 'user']);
 });
+
+Route::get('/logout', function(){
+    request()->user()->tokens()->delete();
+
+    return response([], 204);
+})->middleware('auth:sanctum');
 
 
 
@@ -40,3 +48,9 @@ Route::post('/add_new_exam', [ExamController::class, 'add_new_exam']);
 Route::post('/add_new_question', [ExamController::class, 'login']);
 
 
+
+// Route::middleware('auth:sanctum')->post('/logout',[AuthController::class, 'logout']);
+
+// Route::group(['middleware'=>['auth:sanctum']], function () {
+//     Route::post('/logout', [AuthController::class,'logout']);
+// });
