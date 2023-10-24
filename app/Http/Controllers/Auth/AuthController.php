@@ -27,7 +27,12 @@ class AuthController extends Controller
 
 
         $token = $user->createToken('auth_token')->plainTextToken;
+<<<<<<< HEAD
 
+=======
+        $cookie = cookie('token', $token, 60 * 24); 
+        
+>>>>>>> a8a7c347e5f8694e85ce41cc6e96137a8274784d
         return response()->json([
             'token' => $token,
             'user' => new UserResource($user),
@@ -52,6 +57,11 @@ class AuthController extends Controller
 
         $token = $user->createToken('auth_token')->plainTextToken;
 
+<<<<<<< HEAD
+=======
+        $cookie = cookie('token', $token, 60 * 24); 
+
+>>>>>>> a8a7c347e5f8694e85ce41cc6e96137a8274784d
         return response()->json([
             'user' => new UserResource($user),
             'token' => $token,
