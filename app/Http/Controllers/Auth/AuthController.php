@@ -6,14 +6,16 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    
 
-    public function register(Request $request){
-    
+
+    public function register(Request $request)
+    {
+
 
         $data = $request->all();
         // dd($data);
@@ -25,10 +27,9 @@ class AuthController extends Controller
 
 
         $token = $user->createToken('auth_token')->plainTextToken;
-        $cookie = cookie('token', $token, 60 * 24); // 1 day
-        
+
         return response()->json([
-            'token'=>$token,
+            'token' => $token,
             'user' => new UserResource($user),
         ]);
     }
@@ -37,11 +38,10 @@ class AuthController extends Controller
 
 
 
-    
-      public function login(Request $request) {
-    
-    
-        $data= $request->all();
+
+    public function login(Request $request)
+    {
+        $data = $request->all();
         $user = User::where('email', $data['email'])->first();
 
         if (!$user || !Hash::check($data['password'], $user->password)) {
@@ -52,18 +52,16 @@ class AuthController extends Controller
 
         $token = $user->createToken('auth_token')->plainTextToken;
 
-        $cookie = cookie('token', $token, 60 * 24); // 1 day
-
         return response()->json([
             'user' => new UserResource($user),
-        ])->withCookie($cookie);
-    }   
-
-    
-    public function user(Request $request){
-        return new UserResource($request->user());
+            'token' => $token,
+        ]);
     }
 
 
-    
+    public function user(Request $request)
+    {
+        return new UserResource($request->user());
+    }
+
 }
