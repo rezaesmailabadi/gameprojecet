@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ExamController;
+use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Auth\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -29,5 +32,11 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('/user',[AuthController::class,'user']);
 });
 
+
+
+Route::post('/add_new_category', [CategoryController::class, 'add_new_category']);
+Route::post('/add_new_type', [TypeController::class, 'add_new_type']);
+Route::post('/add_new_exam', [ExamController::class, 'add_new_exam']);
+Route::post('/add_new_question', [ExamController::class, 'login']);
 
 
