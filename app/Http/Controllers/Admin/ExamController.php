@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Validator;
 class ExamController extends Controller
 {
     
+
+
+
+
     // تعریف یک آزمون جدید 
     public function add_new_exam(Request $request)
     {
@@ -25,7 +29,7 @@ class ExamController extends Controller
         $exam->title = $request->title;
         $exam->exam_date = $request->exam_date;
         $exam->time_clock = $request->time_clock;
-        $exam->exam_duration = $request->exam_duration;
+        $exam->exam_duration = $request->exam_duration;// مدت آزمون
         $exam->category = $request->exam_category;
         $exam->type = $request->exam_type;
         $exam->count = $request->count;
@@ -81,8 +85,6 @@ class ExamController extends Controller
             $q->save();
             $arr = array('status' => 'true', 'message' => 'successfully added', 'reload' => url('admin/add_questions/' . $request->exam_id));
         }
-
-        echo json_encode($arr);
     }
 
 }
