@@ -87,4 +87,20 @@ class ExamController extends Controller
         }
     }
 
+
+    public function exma_all()
+    {
+        $data['manageexam'] = Exam::get()->toArray();
+        return response()->json([
+            'results' => $data
+        ], 200);
+
+
+
+    }
+
+
+
+
+
 }

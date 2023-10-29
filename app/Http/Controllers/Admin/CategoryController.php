@@ -29,5 +29,19 @@ class CategoryController extends Controller
            }
        }
    
+
+
+    public function category_all()
+    {
+        $data['category'] = Category::get()->toArray();
+        return response()->json([
+            'results' => $data
+        ], 200);
+    }
+
    
+
+
+
+
 }

@@ -49,8 +49,18 @@ Route::post('/add_new_question', [ExamController::class, 'login']);
 
 
 
-// Route::middleware('auth:sanctum')->post('/logout',[AuthController::class, 'logout']);
 
-// Route::group(['middleware'=>['auth:sanctum']], function () {
-//     Route::post('/logout', [AuthController::class,'logout']);
-// });
+// get request 
+Route::get('/category_all', [CategoryController::class, 'category_all']);
+Route::get('/type_all', [TypeController::class, 'type_all']);
+Route::get('/exam_all', [ExamController::class, 'exam_all']);
+//
+
+
+
+
+
+
+
+
+

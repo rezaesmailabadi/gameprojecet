@@ -21,4 +21,18 @@ class TypeController extends Controller
             $cat->save();
     }
 
+    
+
+    public function type_all()
+    {
+        $data['type'] = Type::get()->toArray();
+        return response()->json([
+            'results' => $data
+        ], 200);
+    }
+
+
+
+
+
 }
